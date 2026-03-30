@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My E-Portfolio</title>
+    <title>E-Portfolio | Mingjing Zhou (周明镜)</title>
     <style>
-        /* 这里是控制网页排版的 CSS 代码 */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 0;
             color: #333;
-            background-color: #f9f9f9;
+            background-color: #f4f7f6;
         }
         header {
             background: #2c3e50;
@@ -45,6 +44,12 @@
             color: #2c3e50;
             text-align: center;
             margin-bottom: 30px;
+            border-bottom: 3px solid #3498db;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+            position: relative;
+            padding-bottom: 5px;
         }
         .about-container {
             display: flex;
@@ -58,7 +63,6 @@
             flex: 1;
             text-align: center;
         }
-        /* 建议上传一张正方形的专业证件照或生活照 */
         .about-photo img {
             width: 200px;
             height: 200px;
@@ -72,6 +76,50 @@
             margin-bottom: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .card h3 {
+            margin-top: 0;
+            color: #34495e;
+        }
+        .card p.date {
+            color: #7f8c8d;
+            font-style: italic;
+            margin-top: -10px;
+            margin-bottom: 15px;
+        }
+        .card ul {
+            margin-bottom: 0;
+            padding-left: 20px;
+        }
+        .skill-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .skill-list li {
+            margin-bottom: 10px;
+        }
+        /* 照片展示 Gallery 响应式网格设计 */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
+        }
+        .gallery-grid a {
+            display: block;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        .gallery-grid a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .gallery-grid img {
+            width: 100%;
+            height: 180px; 
+            object-fit: cover; 
+            display: block;
         }
         .btn {
             display: inline-block;
@@ -90,6 +138,7 @@
             padding: 20px;
             background: #2c3e50;
             color: white;
+            margin-top: 40px;
         }
     </style>
 </head>
@@ -97,9 +146,10 @@
 
     <header>
         <nav>
-            <a href="#about">About Me</a>
-            <a href="#coop">Co-op Experience</a>
-            <a href="#projects">Projects</a>
+            <a href="#about">About</a>
+            <a href="#coop">Internship</a>
+            <a href="#projects">SRTP/Activities</a>
+            <a href="#gallery">Travel</a>
             <a href="#skills">Skills</a>
             <a href="#resume">Resume</a>
             <a href="#contact">Contact</a>
@@ -110,48 +160,94 @@
         <h2>About Me</h2>
         <div class="about-container">
             <div class="about-text">
-                <p>Hello! I am an Electrical Engineering student deeply passionate about sustainable energy and the future of smart grids. I am currently based in Chongqing and will be pursuing my Ph.D. in the United States starting in August 2026.</p>
-                <p>My academic journey is driven by a desire to bridge theoretical research with practical engineering solutions. I thrive in environments that challenge me to solve complex problems, and I am actively seeking opportunities to further expand my expertise in power systems.</p>
+                <p>Hello! I am Mingjing Zhou (周明镜), a senior Electrical Engineering and Automation student at UC Joint College, Chongqing University.</p>
+                <p>I am a highly motivated individual with a strong learning ability and sense of responsibility. I excel in my relevant coursework, and I possess advanced English speaking and listening skills, coupled with outstanding communication and organizational abilities.</p>
+                <p>Outside of my academic and engineering research, I love exploring the immersive worlds of video games. In particular, I am a huge fan of <strong>Baldur's Gate 3</strong> and the <strong>Resident Evil 4 Remake</strong>. I also find deep relaxation in getting lost in a good book.</p>
             </div>
             <div class="about-photo">
-                <img src="photo.jpg" alt="My Profile Photo">
+                <img src="profile.jpg" alt="Mingjing Zhou Profile Photo">
             </div>
         </div>
     </section>
 
     <section id="coop">
-        <h2>Co-op Experience</h2>
+        <h2>Internship Experience</h2>
         <div class="card">
-            <h3>Research Assistant - [University/Company Name]</h3>
-            <p><strong>[Start Date] – [End Date]</strong></p>
+            <h3>Teaching Assistant - UC Joint College (CQU)</h3>
+            <p class="date">Sep 2025 - Dec 2025</p>
             <ul>
-                <li>Assisted in analyzing data related to electrical infrastructure.</li>
-                <li>Collaborated with a team of engineers to test and validate system performance.</li>
-                <li>[在此处添加你的具体实习或实验室经历，写出你的具体贡献]</li>
+                <li>Assisted UC professor with coursework, graded assignments and exams.</li>
+                <li>Purchased lab equipment, supported communication between the professor and students.</li>
+                <li>Facilitated Sino-US academic exchange activities.</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>Intern - Tsinghua Sichuan Energy Internet Research Institute</h3>
+            <p class="date">May 2024 - Aug 2024 & Jan 2025 - Apr 2025</p>
+            <ul>
+                <li>Focused on patent writing and proposal preparation in the new energy field.</li>
+                <li>Drafted project bidding documents and software manuals.</li>
+                <li>Developed modeling of load-curtailment and dispatchable potential of EV storage in Guangzhou.</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>Intern - National Key Lab of Mechanical Transmission for High-End Equipment</h3>
+            <p class="date">Jan 2024 - Apr 2024</p>
+            <ul>
+                <li>Improved LabVIEW programs for servo electric cylinders (simulator).</li>
+                <li>Collaborated with team to optimize C++ programs for electric cylinder systems.</li>
             </ul>
         </div>
     </section>
 
     <section id="projects">
-        <h2>Projects & Involvements</h2>
+        <h2>SRTP & Campus Activities</h2>
         <div class="card">
-            <h3>Data-Driven Optimal V2G Infrastructure Planning</h3>
-            <p>For my current thesis, I am developing a data-driven model for Vehicle-to-Grid (V2G) infrastructure planning. This project specifically considers MSB topology to optimize the integration of electric vehicles into the main power grid, ensuring both efficiency and stability.</p>
+            <h3>Current Project: Optimal V2G Infrastructure Planning (Current Thesis)</h3>
+            <p>Developing a data-driven model for Vehicle-to-Grid (V2G) infrastructure planning specifically considering multi-scenario blending (MSB) topology, to optimize the integration of electric vehicles and ensure grid stability.</p>
         </div>
         <div class="card">
-            <h3>Embedded Systems & Machine Learning Coursework</h3>
-            <p>Completed intensive coursework integrating embedded systems with machine learning algorithms, allowing for real-time data processing and predictive modeling in engineering applications.</p>
+            <h3>State Scientific Research Training Program (SRTP)</h3>
+            <p class="date">Oct 2022 - Jul 2023</p>
+            <p>Member. Project topic: Research on evidence conflict metrics based on quantum distance. (Read literature, summarized research thoughts and validated through simulation).</p>
+        </div>
+        <div class="card">
+            <h3>Mental Health Association - UC Joint College</h3>
+            <p class="date">Sep 2022 - Sep 2024</p>
+            <p>Vice President / Officer. Organized monthly activities, handled news writing, and was responsible for operation of "Grief Cave" activities.</p>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <h2>Travel Gallery</h2>
+        <div class="gallery-grid">
+            <a href="travel1.jpg" target="_blank"><img src="travel1.jpg" alt="Travel Photo 1"></a>
+            <a href="travel2.jpg" target="_blank"><img src="travel2.jpg" alt="Travel Photo 2"></a>
+            <a href="travel3.jpg" target="_blank"><img src="travel3.jpg" alt="Travel Photo 3"></a>
+            <a href="travel4.jpg" target="_blank"><img src="travel4.jpg" alt="Travel Photo 4"></a>
+            <a href="travel5.jpg" target="_blank"><img src="travel5.jpg" alt="Travel Photo 5"></a>
+            <a href="travel6.jpg" target="_blank"><img src="travel6.jpg" alt="Travel Photo 6"></a>
+            <a href="travel7.jpg" target="_blank"><img src="travel7.jpg" alt="Travel Photo 7"></a>
+            <a href="travel8.jpg" target="_blank"><img src="travel8.jpg" alt="Travel Photo 8"></a>
+            <a href="travel9.jpg" target="_blank"><img src="travel9.jpg" alt="Travel Photo 9"></a>
+            <a href="travel10.jpg" target="_blank"><img src="travel10.jpg" alt="Travel Photo 10"></a>
+            <a href="travel11.jpg" target="_blank"><img src="travel11.jpg" alt="Travel Photo 11"></a>
+            <a href="travel12.jpg" target="_blank"><img src="travel12.jpg" alt="Travel Photo 12"></a>
+            <a href="travel13.jpg" target="_blank"><img src="travel13.jpg" alt="Travel Photo 13"></a>
+            <a href="travel14.jpg" target="_blank"><img src="travel14.jpg" alt="Travel Photo 14"></a>
+            <a href="travel15.jpg" target="_blank"><img src="travel15.jpg" alt="Travel Photo 15"></a>
+            <a href="travel16.jpg" target="_blank"><img src="travel16.jpg" alt="Travel Photo 16"></a>
         </div>
     </section>
 
     <section id="skills">
         <h2>Skills & Strengths</h2>
         <div class="card">
-            <ul>
-                <li><strong>Core Engineering:</strong> Power Systems, Power Electronics, Embedded Systems, V2G Technology.</li>
-                <li><strong>Programming & Software:</strong> [e.g., Python, MATLAB, C/C++, LaTeX]</li>
-                <li><strong>Mathematics & Analysis:</strong> Engineering Probability, Data Structures, Machine Learning.</li>
-                <li><strong>Strengths:</strong> Strong analytical thinking, highly adaptable, proactive problem solver.</li>
+            <ul class="skill-list">
+                <li><strong>Engineering Core:</strong> V2G Infrastructure, Power Systems, Embedded Systems, MATLAB modeling.</li>
+                <li><strong>Languages:</strong> Native Mandarin, English (CET-6), Basic Korean.</li>
+                <li><strong>Software:</strong> Matlab (expert), LabVIEW, C++, professional engineering tools.</li>
+                <li><strong>Strengths:</strong> Strong learner, highly responsible, proactive problem solver, advanced communication skills.</li>
             </ul>
         </div>
     </section>
@@ -159,22 +255,22 @@
     <section id="resume">
         <h2>Resume</h2>
         <div class="card" style="text-align: center;">
-            <p>Please click the button below to view or download my fully updated resume.</p>
-            <a href="resume.pdf" target="_blank" class="btn">Download My Resume (PDF)</a>
+            <p>Please click the button below to view or download my fully updated resume (PDF).</p>
+            <a href="resume.pdf" target="_blank" class="btn">View My Resume</a>
         </div>
     </section>
 
     <section id="contact">
         <h2>Contact Information</h2>
         <div class="card" style="text-align: center;">
-            <p>I am always open to discussing research, engineering projects, or PhD opportunities.</p>
-            <p><strong>Email:</strong> <a href="mailto:your.email@example.com">your.email@example.com</a></p>
-            <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a></p>
+            <p>I am actively seeking research and internship opportunities in electrical engineering and power systems.</p>
+            <p><strong>Email:</strong> <a href="mailto:Zhoumingjingcqu@163.com">Zhoumingjingcqu@163.com</a></p>
+            <p><strong>Address:</strong> Chongqing, China</p>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 My E-Portfolio. All rights reserved.</p>
+        <p>&copy; 2026 Mingjing Zhou (周明镜). All rights reserved.</p>
     </footer>
 
 </body>
