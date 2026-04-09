@@ -59,7 +59,7 @@
             padding: 120px 20px 60px; 
             max-width: 1000px; 
             margin: auto;
-            /* 开启硬件加速，让滑动更丝滑 */
+            /* 🚀 开启硬件加速，让滑动更丝滑 */
             transform: translateZ(0); 
         }
         
@@ -89,7 +89,7 @@
             box-shadow: 0 6px 20px rgba(0,0,0,0.06); 
             border-top: 5px solid var(--accent-purple); 
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            content-visibility: auto; /* 只有当卡片进入视口时才渲染内容 */
+            content-visibility: auto; /* 🚀 只有当卡片进入视口时才渲染内容 */
         }
         .card:hover {
             transform: translateY(-5px);
@@ -143,30 +143,34 @@
             transition: transform 0.3s ease;
         }
 
-        /* Internship Section */
+        /* ---------------------------------------------------- */
+        /* Internship Section (回归滑动跟随排版) */
+        /* ---------------------------------------------------- */
+        .internship-container {
+            display: flex; 
+            align-items: flex-start; 
+            gap: 40px;
+        }
         .internship-content-list {
-            width: 100%; 
+            flex: 1; /* 左侧卡片占据主要空间 */
         }
-
-        /* 实习经历内部的小照片排版 (Flex 布局) */
-        .intern-card-flex {
-            display: flex;
-            gap: 25px;
-            align-items: center; 
+        
+        /* 右侧的滑动跟随照片 */
+        .sticky-id-wrapper {
+            flex: 0 0 180px; /* 照片容器宽度稍作调整，让它更大气 */
+            position: sticky; 
+            top: 120px; /* 固定在距离屏幕顶部 120px 的位置 */
+            height: fit-content; 
+            text-align: center;
+            z-index: 5; 
         }
-        .intern-text {
-            flex: 1;
-        }
-        .intern-img-box {
-            flex: 0 0 150px; 
-        }
-        .intern-img-box img {
+        .sticky-id-wrapper img {
             width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            border: 2px solid var(--light-bg);
-            object-fit: cover;
+            height: auto; /* 自动高度，适应你原图的比例 */
+            object-fit: cover; 
+            border-radius: 12px; 
+            border: 4px solid white;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
         }
 
         /* Travel Gallery Section - 仅保留 6 个位置 */
@@ -196,13 +200,17 @@
         }
 
         @media (max-width: 768px) {
-            .intern-card-flex {
-                flex-direction: column-reverse; 
-                align-items: flex-start;
+            .internship-container {
+                flex-direction: column-reverse; /* 手机上让照片跑到上面去 */
+                gap: 20px;
+                align-items: center;
             }
-            .intern-img-box {
-                width: 100%;
-                max-width: 200px;
+            .sticky-id-wrapper {
+                position: relative; /* 手机上不跟随滑动 */
+                top: 0;
+                margin-bottom: 10px;
+                flex: 0 0 auto;
+                width: 200px;
             }
         }
 
@@ -266,59 +274,45 @@
 
     <section id="coop">
         <h2>Internship Experience</h2>
-        
-        <div class="internship-content-list">
+        <div class="internship-container">
             
-            <div class="card">
-                <div class="intern-card-flex">
-                    <div class="intern-text">
-                        <h3>Intern - National Key Lab of Mechanical Transmission</h3>
-                        <p class="date">Jan 2024 - Apr 2024</p>
-                        <ul>
-                            <li>Improved LabVIEW programs for servo electric cylinders (simulator).</li>
-                            <li>Collaborated with team to optimize C++ programs for electric cylinder systems.</li>
-                        </ul>
-                    </div>
-                    <div class="intern-img-box">
-                        <img src="id_photo.jpg" alt="Key Lab Internship" loading="lazy" decoding="async">
-                    </div>
+            <div class="internship-content-list">
+                
+                <div class="card">
+                    <h3>Intern - National Key Lab of Mechanical Transmission</h3>
+                    <p class="date">Jan 2024 - Apr 2024</p>
+                    <ul>
+                        <li>Improved LabVIEW programs for servo electric cylinders (simulator).</li>
+                        <li>Collaborated with team to optimize C++ programs for electric cylinder systems.</li>
+                    </ul>
                 </div>
-            </div>
 
-            <div class="card">
-                <div class="intern-card-flex">
-                    <div class="intern-text">
-                        <h3>Intern - Tsinghua Sichuan Energy Internet Research Institute</h3>
-                        <p class="date">May 2024 - Aug 2024 & Jan 2025 - Apr 2025</p>
-                        <ul>
-                            <li>Focused on patent writing and proposal preparation in the new energy field.</li>
-                            <li>Drafted project bidding documents and software manuals.</li>
-                            <li>Developed modeling of load-curtailment and dispatchable potential of EV storage in Guangzhou.</li>
-                        </ul>
-                    </div>
-                    <div class="intern-img-box">
-                        <img src="internship2.jpg" alt="Tsinghua Internship" loading="lazy" decoding="async">
-                    </div>
+                <div class="card">
+                    <h3>Intern - Tsinghua Sichuan Energy Internet Research Institute</h3>
+                    <p class="date">May 2024 - Aug 2024 & Jan 2025 - Apr 2025</p>
+                    <ul>
+                        <li>Focused on patent writing and proposal preparation in the new energy field.</li>
+                        <li>Drafted project bidding documents and software manuals.</li>
+                        <li>Developed modeling of load-curtailment and dispatchable potential of EV storage in Guangzhou.</li>
+                    </ul>
                 </div>
-            </div>
 
-            <div class="card">
-                <div class="intern-card-flex">
-                    <div class="intern-text">
-                        <h3>Teaching Assistant - CQU-UC Joint Co-op Institute</h3>
-                        <p class="date">Sep 2025 - Dec 2025</p>
-                        <ul>
-                            <li>Assisted UC professor with coursework, graded assignments and exams.</li>
-                            <li>Purchased lab equipment, supported communication between the professor and students.</li>
-                            <li>Facilitated Sino-US academic exchange activities.</li>
-                        </ul>
-                    </div>
-                    <div class="intern-img-box">
-                        <img src="internship3.jpg" alt="TA Internship" loading="lazy" decoding="async">
-                    </div>
+                <div class="card">
+                    <h3>Teaching Assistant - CQU-UC Joint Co-op Institute</h3>
+                    <p class="date">Sep 2025 - Dec 2025</p>
+                    <ul>
+                        <li>Assisted UC professor with coursework, graded assignments and exams.</li>
+                        <li>Purchased lab equipment, supported communication between the professor and students.</li>
+                        <li>Facilitated Sino-US academic exchange activities.</li>
+                    </ul>
                 </div>
-            </div>
 
+            </div>
+            
+            <div class="sticky-id-wrapper">
+                <img src="id_photo.jpg" alt="Internship Photo" loading="lazy" decoding="async">
+            </div>
+            
         </div>
     </section>
 
