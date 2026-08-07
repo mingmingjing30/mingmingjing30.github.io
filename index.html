@@ -3,24 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Portfolio | Mingjing Zhou (周明镜)</title>
+    <title>E-Portfolio | Mingjing Zhou</title>
     
-    <link rel="preload" href="Profile.jpg" as="image">
+    <!-- 🚀 首屏性能极致优化：强制优先加载主图，并使用最高优先级 -->
+    <link rel="preload" href="Profile.jpg" as="image" fetchpriority="high">
 
     <style>
-        /* 深紫色高级主题配色方案 */
+        /* 学术级高级深紫主题配色 */
         :root {
-            --primary-purple: #4a148c; 
-            --accent-purple: #9c27b0;  
-            --light-bg: #f5f3f7;       
-            --text-main: #2c3e50;
-            --text-light: #7f8c8d;
-            --card-border-radius: 15px;
+            --primary-purple: #3a1a6b; /* 更深邃专业的学术紫 */
+            --accent-purple: #7b1fa2;  
+            --light-bg: #f8f9fa; /* 极简的科研风浅灰背景 */
+            --text-main: #2b2b2b;
+            --text-light: #5f6368;
+            --card-border-radius: 12px; /* 稍微收敛圆角，更显严谨 */
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.8;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.7;
             margin: 0;
             padding: 0;
             color: var(--text-main);
@@ -28,27 +29,32 @@
             scroll-behavior: smooth; 
         }
         
+        /* 导航栏设计：沉稳大气 */
         header {
-            background: linear-gradient(135deg, var(--primary-purple), #6a1b9a, #9575cd);
+            background: rgba(58, 26, 107, 0.98);
+            backdrop-filter: blur(10px);
             color: white;
             padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
         }
         nav {
             text-align: center;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px 25px;
         }
         nav a {
             color: rgba(255, 255, 255, 0.9);
             text-decoration: none;
-            margin: 0 18px;
-            font-weight: 600;
-            letter-spacing: 0.8px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
             text-transform: uppercase;
-            font-size: 0.95em;
+            font-size: 0.9em;
             transition: color 0.3s;
         }
         nav a:hover {
@@ -56,126 +62,145 @@
         }
 
         section {
-            padding: 120px 20px 60px; 
-            max-width: 1000px; 
+            padding: 110px 20px 50px; 
+            max-width: 1050px; /* 加宽主容器以适应大段科研经历 */
             margin: auto;
-            /* 开启硬件加速，让滑动更丝滑 */
             transform: translateZ(0); 
         }
         
         h2 {
             color: var(--primary-purple);
             text-align: center;
-            margin-bottom: 50px;
-            font-size: 2.2em;
+            margin-bottom: 45px;
+            font-size: 2.1em;
             position: relative;
             font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         h2::after {
             content: '';
             display: block;
-            width: 80px;
+            width: 60px;
             height: 4px;
             background: var(--accent-purple);
             margin: 15px auto 0;
             border-radius: 2px;
         }
 
+        /* 专业学术卡片样式 */
         .card {
             background: white;
-            padding: 35px;
-            margin-bottom: 30px;
+            padding: 35px 40px;
+            margin-bottom: 25px;
             border-radius: var(--card-border-radius);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.06); 
-            border-top: 5px solid var(--accent-purple); 
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04); 
+            border-left: 4px solid var(--accent-purple); /* 改为左侧高亮，学术感更强 */
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
             content-visibility: auto; 
         }
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 35px rgba(74, 20, 140, 0.15);
+            transform: translateX(4px); /* 侧向微动，保持稳重 */
+            box-shadow: 0 8px 25px rgba(58, 26, 107, 0.1);
         }
         .card h3 {
             margin-top: 0;
             color: var(--primary-purple);
-            font-size: 1.4em;
-            font-weight: 600;
+            font-size: 1.35em;
+            font-weight: 700;
+            margin-bottom: 5px;
         }
-        .card p.date {
+        .card p.subtitle {
+            color: var(--text-main);
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
+        .card p.date-loc {
             color: var(--accent-purple);
             font-style: italic;
-            font-weight: 600;
-            margin-top: -10px;
-            margin-bottom: 20px;
+            font-weight: 500;
+            font-size: 0.95em;
+            margin-top: 0;
+            margin-bottom: 15px;
         }
         .card ul {
             margin-bottom: 0;
             padding-left: 20px;
+            color: #444;
         }
         .card li {
             margin-bottom: 8px;
+            text-align: justify; /* 两端对齐，学术阅读体验更好 */
+        }
+        .paper-cite {
+            background: #f3f0f8;
+            padding: 12px 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+            font-size: 0.95em;
+            border-left: 3px solid var(--primary-purple);
         }
 
-        /* About Me Section */
+        /* 个人介绍区域 */
         .about-stacked {
             display: flex;
             flex-direction: column;
             align-items: center; 
-            gap: 40px;
+            gap: 35px;
         }
         .about-text-card {
             width: 100%; 
-            max-width: 850px; 
+            max-width: 900px; 
             margin: 0 auto;
         }
-        
-        /* 新增：个人信息结构化列表样式 */
         .profile-list {
             list-style: none;
-            padding: 25px;
+            padding: 25px 30px;
             margin-bottom: 25px;
             text-align: left;
-            background: #fdfcff;
-            border-radius: 12px;
-            border-left: 5px solid var(--accent-purple);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            background: #faf9fc;
+            border-radius: 8px;
+            border: 1px solid #e6e0f0;
         }
         .profile-list li {
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             font-size: 1.05em;
+            display: flex;
+            align-items: flex-start;
         }
-        .profile-list li:last-child {
-            margin-bottom: 0;
+        .profile-list li strong {
+            min-width: 130px;
+            display: inline-block;
+            color: var(--primary-purple);
         }
-
+        
         .about-photo-wrapper {
             width: 100%;
             text-align: center;
         }
         .about-photo-wrapper img {
             width: 100%; 
-            max-width: 850px; 
+            max-width: 900px; 
             height: auto; 
             object-fit: cover;
             border-radius: var(--card-border-radius); 
-            border: 6px solid white; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
 
-        /* Internship Section (滑动跟随排版) */
+        /* 实习滑动跟随排版 */
         .internship-container {
             display: flex; 
             align-items: flex-start; 
-            gap: 40px;
+            gap: 30px;
         }
         .internship-content-list {
             flex: 1; 
         }
         .sticky-id-wrapper {
-            flex: 0 0 180px; 
+            flex: 0 0 200px; 
             position: sticky; 
-            top: 120px; 
+            top: 100px; 
             height: fit-content; 
             text-align: center;
             z-index: 5; 
@@ -184,37 +209,31 @@
             width: 100%;
             height: auto; 
             object-fit: cover; 
-            border-radius: 12px; 
-            border: 4px solid white;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+            border-radius: 8px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        /* Travel Gallery Section - 6 个精选位置 */
+        /* 旅游画廊 (精选 6 张) */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
-            gap: 25px; 
-        }
-        .gallery-grid a {
-            display: block;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            background-color: #e0e0e0; 
-        }
-        .gallery-grid a:hover {
-            transform: scale(1.03); 
-            box-shadow: 0 10px 30px rgba(74, 20, 140, 0.25);
-            z-index: 10;
+            gap: 20px; 
         }
         .gallery-grid img {
             width: 100%;
-            height: 300px; 
+            height: 250px; 
             object-fit: cover; 
+            border-radius: 8px;
             display: block;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+        .gallery-grid img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(58, 26, 107, 0.2);
         }
 
+        /* 响应式调整 */
         @media (max-width: 768px) {
             .internship-container {
                 flex-direction: column-reverse; 
@@ -225,8 +244,13 @@
                 position: relative; 
                 top: 0;
                 margin-bottom: 10px;
-                flex: 0 0 auto;
-                width: 200px;
+                width: 180px;
+            }
+            .profile-list li {
+                flex-direction: column;
+            }
+            .profile-list li strong {
+                margin-bottom: 4px;
             }
         }
 
@@ -234,28 +258,26 @@
             display: inline-block;
             background: var(--accent-purple);
             color: white;
-            padding: 14px 30px;
+            padding: 12px 28px;
             text-decoration: none;
-            border-radius: 35px; 
-            font-weight: bold;
-            font-size: 0.95em;
+            border-radius: 30px; 
+            font-weight: 600;
             letter-spacing: 0.5px;
-            margin-top: 15px;
-            transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
-            box-shadow: 0 4px 10px rgba(156, 39, 176, 0.2);
+            margin-top: 10px;
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0 4px 10px rgba(123, 31, 162, 0.2);
         }
         .btn:hover {
             background: var(--primary-purple);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(74, 20, 140, 0.3);
+            transform: translateY(-2px);
         }
 
         footer {
             text-align: center;
             padding: 30px;
             background: var(--primary-purple);
-            color: rgba(255,255,255,0.8);
-            margin-top: 80px;
+            color: rgba(255,255,255,0.7);
+            margin-top: 60px;
             font-size: 0.9em;
         }
     </style>
@@ -264,152 +286,248 @@
 
     <header>
         <nav>
-            <a href="#about">About</a>
-            <a href="#coop">Internship</a>
-            <a href="#projects">Activities</a>
+            <a href="#about">Profile</a>
+            <a href="#education">Education</a>
+            <a href="#research">Research</a>
+            <a href="#internship">Internship</a>
+            <a href="#activities">Activities</a>
             <a href="#gallery">Travel</a>
             <a href="#skills">Skills</a>
             <a href="#resume">Resume</a>
-            <a href="#contact">Contact</a>
         </nav>
     </header>
 
+    <!-- SECTION 1: ABOUT ME -->
     <section id="about">
-        <h2>About Me ✨</h2>
+        <h2>Personal Profile</h2>
         <div class="about-stacked">
             <div class="card about-text-card"> 
-                
+                <!-- 结构化数字名片，高度贴合简历信息 -->
                 <ul class="profile-list">
-                    <li>🎓 <strong>Name:</strong> Mingjing Zhou (周明镜)</li>
-                    <li>🎂 <strong>Age:</strong> 22</li>
-                    <li>🏫 <strong>Institute:</strong> CQU-UC Joint Co-op Institute, Chongqing University</li>
-                    <li>⚙️ <strong>Major:</strong> Electrical Engineering and Automation</li>
-                    <li>📚 <strong>Core Courses:</strong> Semiconductor Devices, Engineering Modeling, Electronic Technology, Signals & Systems, Digital Design of Power Electronics, SECS Programming, Technical English Communication.</li>
+                    <li><strong>Name:</strong> <span>Mingjing Zhou (周明镜)</span></li>
+                    <li><strong>Age:</strong> <span>22</span></li>
+                    <li><strong>Institute:</strong> <span>CQU-UC Joint Co-op Institute<br>(Dual Degree Program: Chongqing University & University of Cincinnati)</span></li>
+                    <li><strong>Major:</strong> <span>Electrical Engineering and Automation</span></li>
+                    <li><strong>GPA:</strong> <span>88.12 / 100</span></li>
+                    <li><strong>Core Courses:</strong> <span>Semiconductor Devices, Engineering Modeling, Electronic Technology, Signals & Systems, Digital Design of Power Electronics, SECS Programming, Technical English Communication.</span></li>
+                    <li><strong>Email:</strong> <span><a href="mailto:zhoumingjingcqu@163.com" style="color: var(--accent-purple); text-decoration: none;">zhoumingjingcqu@163.com</a></span></li>
+                    <li><strong>Mobile:</strong> <span>+86 19112163571</span></li>
                 </ul>
 
-                <div style="text-align: justify;">
-                    <p>As an <strong>INTP-A</strong> and a <strong>Capricorn</strong>, I approach my academic and engineering pursuits with deep analytical precision, quiet determination, and a strong sense of responsibility. I excel in my relevant coursework and possess advanced English communication skills.</p>
+                <div style="text-align: justify; color: #444;">
+                    <p>As an <strong>INTP-A</strong> and a <strong>Capricorn</strong>, I approach my academic and engineering pursuits with deep analytical precision, quiet determination, and a strong sense of responsibility. I excel in my coursework and possess advanced technical communication skills, bridging the gap between theoretical modeling and practical industrial application.</p>
                     <p>Beyond the lab and classroom, I am someone who deeply loves life and has an endless curiosity for exploring the world. Traveling and experiencing different cultures is a vital source of inspiration for me. I also treasure the meaningful connections in my life and absolutely love spending time with my friends, who make every adventure more vibrant. When I'm not out exploring, you can usually find me unwinding with immersive video games like <em>Baldur's Gate 3</em> and the <em>Resident Evil 4 Remake</em>, or losing myself in a good book.</p>
                 </div>
             </div>
             
             <div class="about-photo-wrapper">
-                <img src="Profile.jpg" alt="Mingjing Zhou Landscape Photo">
+                <img src="Profile.jpg" alt="Mingjing Zhou Landscape Photo" fetchpriority="high">
             </div>
         </div>
     </section>
 
-    <section id="coop">
+    <!-- SECTION 2: EDUCATION -->
+    <section id="education">
+        <h2>Education</h2>
+        <div class="card">
+            <h3>Chongqing University</h3>
+            <p class="subtitle">B.Eng. (expected) in Electrical Engineering and Automation</p>
+            <p class="date-loc">Sep 2022 – Jun 2027 | Chongqing, China</p>
+            <ul>
+                <li><strong>Institute:</strong> CQU-UC Joint Co-op Institute</li>
+                <li><strong>GPA:</strong> 88.12 / 100</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>University of Cincinnati</h3>
+            <p class="subtitle">B.S. (expected) in Electrical Engineering</p>
+            <p class="date-loc">Aug 2026 – Jun 2027 | Cincinnati, OH, USA</p>
+            <ul>
+                <li><strong>Institute:</strong> CQU-UC Joint Co-op Institute (Dual Degree Program)</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- SECTION 3: RESEARCH EXPERIENCE (核心科研经历) -->
+    <section id="research">
+        <h2>Research Experience</h2>
+        
+        <div class="card">
+            <h3>National-level Smart Grid Research Project</h3>
+            <p class="subtitle">Research and Application of Hierarchical and Zonal Control Technology for Large-Scale EV Charging and Discharging</p>
+            <p class="date-loc">Feb 2025 – Jun 2026 | Chongqing, China</p>
+            <ul>
+                <li>Focused on large-scale V2G coordination and microgrid planning. Developed an integrated optimization model addressing transformer thermal bottlenecks and battery cyclic aging, utilizing a TSK fuzzy inference system to quantify user participation willingness.</li>
+                <li>Built MATLAB-based simulation and data-driven forecasting frameworks. Reformulated complex MINLP model into a compact MIQP format via Big-M and convexification techniques, solving seamlessly using YALMIP and Gurobi.</li>
+                <li>Proposed a dynamic topology reconfiguration strategy by modeling MSB spatial topology as an active variable for V2G dispatch. Validated with empirical data, significantly improving computational efficiency and cutting system operating costs by 62.6%.</li>
+            </ul>
+            <div class="paper-cite">
+                <strong>PAPER:</strong> Zhou, M., Fang S., & Chen G. (2026). Optimal V2G Infrastructure Dispatch Considering Spatial MSB Configuration and Joint Asset Longevity. <em>IET Renewable Power Generation (under review)</em>.
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Tsinghua Sichuan Energy Internet Research Institute</h3>
+            <p class="subtitle">Multi-Objective Control Strategy and Evaluation System for Carbon Emission Mitigation Measures (Institutional Patent Invention)</p>
+            <p class="date-loc">Mar 2025 – Apr 2025 | Intern at the Institute of Hybrid Simulation</p>
+            <ul>
+                <li>Architected a 5-module framework integrating surrogate modeling, HMOPSO optimization, and Kalman filter closed-loop evaluation. Drafted technical disclosure for a patent (3 core protection points), resolving the lack of dynamic carbon factor quantification.</li>
+                <li>Utilized SCADA/EMS data and LSTM networks for accurate wind and solar load forecasting. Built a 5-factor coordinated marginal carbon reduction surrogate model to optimize multi-source energy operations.</li>
+                <li>Designed an HMOPSO algorithm to identify the Pareto front for emissions, costs, and reliability. Established a 4-level dynamic closed-loop control system with rolling compensation.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>Tsinghua Sichuan Energy Internet Research Institute</h3>
+            <p class="subtitle">AI-Based Power and Energy Balance Optimization System (Institutional Patent Invention)</p>
+            <p class="date-loc">Jun 2024 – Jul 2024 | Intern at the Institute of Hybrid Simulation</p>
+            <ul>
+                <li>Led the design of a 5-module optimization architecture to address real-time computational challenges in conventional power dispatch. Drafted core technical disclosure for an institutional invention patent (2 key protection points).</li>
+                <li>Integrated SARIMA and deep neural networks to extract time- and frequency-domain features of renewable energy fluctuations. Introduced an RBF-SVM model for high-dimensional anomaly detection.</li>
+                <li>Formulated a hybrid DQN-MILP optimization model to enable adaptive real-time dispatch, deploying a distributed data acquisition system that enhanced grid node response speed and dispatch accuracy.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>State Key Lab of Mechanical Transmission for Advanced Equipment</h3>
+            <p class="subtitle">Optimization of Servo Electric Cylinder Control System Based on LabVIEW and C++</p>
+            <p class="date-loc">Jan 2024 – Apr 2024 | Research Intern</p>
+            <ul>
+                <li>Reconstructed the driver program on a DSP platform using C/C++ based on the FOC architecture, implementing Park/Clark transformations and SPWM/SVPWM modulation.</li>
+                <li>Debugged the three-loop PID control (current, speed, and position) to significantly improve the dynamic response and control accuracy.</li>
+                <li>Redesigned the LabVIEW-based human-machine interaction (HMI) system and integrated robust serial communication protocols, successfully resolving communication lag and data parsing packet loss issues.</li>
+                <li>Established a high-performance servo cylinder debugging platform, increasing data refresh rate by nearly 30%, and wrote comprehensive user manuals to ensure project acceptance.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- SECTION 4: INTERNSHIP EXPERIENCE -->
+    <section id="internship">
         <h2>Internship Experience</h2>
         <div class="internship-container">
             
             <div class="internship-content-list">
+                
                 <div class="card">
-                    <h3>Intern - National Key Lab of Mechanical Transmission</h3>
-                    <p class="date">Jan 2024 - Apr 2024</p>
+                    <h3>Chongqing Huayu Electrical Group Co., Ltd.</h3>
+                    <p class="subtitle">R&D Testing and Technical Management Intern (Department of Inertial Navigation)</p>
+                    <p class="date-loc">May 2026 – Jul 2026 | Chongqing, China</p>
                     <ul>
-                        <li>Improved LabVIEW programs for servo electric cylinders (simulator).</li>
-                        <li>Collaborated with team to optimize C++ programs for electric cylinder systems.</li>
+                        <li>Developed MATLAB and Python scripts to automate CSV test-data processing, applied moving-average filtering to remove noise, and generated temperature-drift curves, improving testing efficiency.</li>
+                        <li>Studied operating principles of inertial sensors and translated 3 technical papers on MEMS inertial navigation packaging, producing nearly 10,000 words of technical summaries.</li>
+                        <li>Participated in formatting and proofreading technical reports under confidentiality regulations and GJB quality standards, checking figure numbering, formulas, and terminology.</li>
+                        <li>Audited laboratory assets, checked precision instrument records, and produced structured meeting minutes to facilitate cross-functional collaboration.</li>
                     </ul>
                 </div>
 
                 <div class="card">
-                    <h3>Intern - Tsinghua Sichuan Energy Internet Research Institute</h3>
-                    <p class="date">May 2024 - Aug 2024 & Jan 2025 - Apr 2025</p>
+                    <h3>Tsinghua Sichuan Energy Internet Research Institute</h3>
+                    <p class="subtitle">Power System Analysis Intern (Institute of Hybrid Simulation)</p>
+                    <p class="date-loc">May 2024 – Aug 2024 & Jan 2025 – Apr 2025 | Chengdu, China</p>
                     <ul>
-                        <li>Focused on patent writing and proposal preparation in the new energy field.</li>
-                        <li>Drafted project bidding documents and software manuals.</li>
-                        <li>Developed modeling of load-curtailment and dispatchable potential of EV storage in Guangzhou.</li>
+                        <li><strong>Code Refactoring & Simulation:</strong> Refactored C++ and MATLAB control codes; optimized probabilistic wind/solar power output models based on MCMC, K-Means, and PSO. Developed an 8,760-hour load aggregation model for electrochemical energy storage.</li>
+                        <li><strong>Academic Output:</strong> Drafted 4 chapters of a paper on VSC-HVDC Systems. Delivered an English presentation at the 4th International Conference on Power Systems and Energy Internet.</li>
+                        <li><strong>Project Bidding & Docs:</strong> Wrote technical proposals for major projects (ultra-large urban grids, flexible DC). Authored a 26-page software user guide and benchmarked BPA against Simulink and PSCAD.</li>
                     </ul>
                 </div>
 
                 <div class="card">
-                    <h3>Teaching Assistant - CQU-UC Joint Co-op Institute</h3>
-                    <p class="date">Sep 2025 - Dec 2025</p>
+                    <h3>CQU-UC Joint Co-op Institute</h3>
+                    <p class="subtitle">Teaching Assistant for Semiconductor Devices & Digital Design</p>
+                    <p class="date-loc">Sep 2025 – Dec 2025 | Chongqing, China</p>
                     <ul>
-                        <li>Assisted UC professor with coursework, graded assignments and exams.</li>
-                        <li>Purchased lab equipment, supported communication between the professor and students.</li>
-                        <li>Facilitated Sino-US academic exchange activities.</li>
+                        <li>Managed attendance, coordinated course enrollment, and organized laboratory sessions.</li>
+                        <li>Graded 17 theoretical assignments and 8 lab reports with rapid feedback; reviewed 62 midterm exams.</li>
+                        <li>Compiled course evaluation surveys and authored a comparative analysis report (4-5 pages) of electrical engineering lab courses in China vs. the U.S.</li>
+                        <li>Supported the planning and execution of orientation activities serving over 300 participants.</li>
                     </ul>
                 </div>
+
             </div>
             
+            <!-- 右侧固定跟随的照片 -->
             <div class="sticky-id-wrapper">
-                <img src="id_photo.jpg" alt="Internship Photo" loading="lazy" decoding="async">
+                <img src="id_photo.jpg" alt="Internship Profile" loading="lazy" decoding="async">
             </div>
             
         </div>
     </section>
 
-    <section id="projects">
-        <h2>SRTP & Campus Activities</h2>
+    <!-- SECTION 5: ACTIVITIES & AWARDS -->
+    <section id="activities">
+        <h2>Honors & Activities</h2>
         
         <div class="card">
-            <h3>American Mathematical Modeling Contest (MCM/ICM)</h3>
-            <p class="date">2024 & 2025 (Twice)</p>
-            <ul style="list-style-type: '🏆 ';">
-                <li>Served as <strong>Captain</strong> for both the 2024 and 2025 contests.</li>
-                <li>Led team to win the <strong>Successful Participant (S Award)</strong> in both competitions.</li>
+            <h3>U.S. Mathematical Contest in Modeling (MCM)</h3>
+            <p class="date-loc">Mar 2024 & Mar 2025</p>
+            <ul>
+                <li>Served as <strong>Captain</strong> for two consecutive years, leading the team to win the <strong>"S" Award (Successful Participant)</strong> in both 2024 and 2025.</li>
             </ul>
         </div>
 
         <div class="card">
-            <h3>State Scientific Research Training Program (SRTP)</h3>
-            <p class="date">Oct 2022 - Jul 2023</p>
-            <p>Member. Project topic: Research on evidence conflict metrics based on quantum distance.</p>
+            <h3>Scholarships & Awards</h3>
+            <p class="date-loc">2022 - 2026</p>
+            <ul>
+                <li><strong>Third Prize of Excellent Student Scholarship</strong> (Awarded 6 consecutive times from Fall 2022 to Spring 2026).</li>
+                <li><strong>"Top 10 Psychological Counselors"</strong> of Chongqing University (Jul 2025).</li>
+                <li><strong>Third Prize</strong> in the 7th National College Student Micro-Film Showcase – Long Video Category (Mar 2024).</li>
+            </ul>
         </div>
         
         <div class="card">
-            <h3>Mental Health Association - CQU-UC Joint Co-op Institute</h3>
-            <p class="date">Sep 2022 - Sep 2024</p>
-            <p>Vice President / Officer. Organized monthly activities, handled news writing, and was responsible for operation of "Grief Cave" activities.</p>
+            <h3>Campus Leadership</h3>
+            <p class="date-loc">Sep 2022 – Sep 2024</p>
+            <ul>
+                <li><strong>CQU-UC Mental Health Association (09/2022 - 09/2024):</strong> Vice President / Officer. Organized monthly activities, handled news writing, and operated "Grief Cave" events.</li>
+                <li><strong>School's Student Union (09/2022 - 09/2023):</strong> Actively participated in student work and event organization.</li>
+                <li><strong>State Scientific Research Training Program (SRTP):</strong> Conducted research on evidence conflict metrics based on quantum distance (Oct 2022 - Jul 2023).</li>
+            </ul>
         </div>
     </section>
 
+    <!-- SECTION 6: TRAVEL GALLERY -->
     <section id="gallery">
         <h2>Travel Gallery</h2>
+        <!-- 仅保留精选的 6 张照片，应用懒加载极致优化性能 -->
         <div class="gallery-grid">
-            <a href="travel1.jpg" target="_blank"><img src="travel1.jpg" alt="Travel 1" loading="lazy" decoding="async"></a>
-            <a href="travel2.jpg" target="_blank"><img src="travel2.jpg" alt="Travel 2" loading="lazy" decoding="async"></a>
-            <a href="travel3.jpg" target="_blank"><img src="travel3.jpg" alt="Travel 3" loading="lazy" decoding="async"></a>
-            <a href="travel4.jpg" target="_blank"><img src="travel4.jpg" alt="Travel 4" loading="lazy" decoding="async"></a>
-            <a href="travel5.jpg" target="_blank"><img src="travel5.jpg" alt="Travel 5" loading="lazy" decoding="async"></a>
-            <a href="travel6.jpg" target="_blank"><img src="travel6.jpg" alt="Travel 6" loading="lazy" decoding="async"></a>
+            <img src="travel1.jpg" alt="Travel Snap 1" loading="lazy" decoding="async">
+            <img src="travel2.jpg" alt="Travel Snap 2" loading="lazy" decoding="async">
+            <img src="travel3.jpg" alt="Travel Snap 3" loading="lazy" decoding="async">
+            <img src="travel4.jpg" alt="Travel Snap 4" loading="lazy" decoding="async">
+            <img src="travel5.jpg" alt="Travel Snap 5" loading="lazy" decoding="async">
+            <img src="travel6.jpg" alt="Travel Snap 6" loading="lazy" decoding="async">
         </div>
     </section>
 
+    <!-- SECTION 7: SKILLS -->
     <section id="skills">
         <h2>Skills & Strengths</h2>
         <div class="card">
-            <ul style="list-style-type: none; padding-left: 10px;">
-                <li style="margin-bottom: 12px;">⚡ <strong>Engineering Core:</strong> Power Systems, Embedded Systems, MATLAB modeling.</li>
-                <li style="margin-bottom: 12px;">🌍 <strong>Languages:</strong> Native Mandarin, English (CET-6), Basic Korean.</li>
-                <li style="margin-bottom: 12px;">💻 <strong>Software:</strong> Matlab (expert), Python, Simulink, C++, professional engineering tools.</li>
-                <li style="margin-bottom: 12px;">🚀 <strong>Strengths:</strong> Strong learner, highly responsible, proactive problem solver, advanced communication skills.</li>
+            <ul style="list-style-type: none; padding-left: 0;">
+                <li style="margin-bottom: 12px;">🌍 <strong>Language Skills:</strong> Chinese (Native), English (Fluent / Advanced Communication), Korean (Basic).</li>
+                <li style="margin-bottom: 12px;">💻 <strong>Computer Skills:</strong> C++, MATLAB (Expert), Python, Jupyter, Simulink, LabVIEW, YALMIP, Gurobi.</li>
+                <li style="margin-bottom: 12px;">⚡ <strong>Engineering Core:</strong> Power Systems Analysis, V2G Modeling, Embedded Systems, Circuit Optimization.</li>
+                <li style="margin-bottom: 12px;">🎨 <strong>Interests:</strong> Foreign languages, sports, reading, traveling.</li>
             </ul>
         </div>
     </section>
 
+    <!-- SECTION 8: RESUME & CONTACT -->
     <section id="resume">
-        <h2>Resume</h2>
+        <h2>Resume & Contact</h2>
         <div class="card" style="text-align: center;">
-            <p>Please click the button below to view or download my fully updated resume (PDF).</p>
-            <a href="resume.pdf" target="_blank" class="btn">View My Resume</a>
-        </div>
-    </section>
-
-    <section id="contact">
-        <h2>Contact Information</h2>
-        <div class="card" style="text-align: center;">
-            <p>I am actively seeking research and internship opportunities in electrical engineering and power systems.</p>
-            <p><strong>Phone:</strong> +86 19112163571</p>
-            <p><strong>Email:</strong> <a href="mailto:Zhoumingjingcqu@163.com" style="color: var(--accent-purple); font-weight: bold;">Zhoumingjingcqu@163.com</a></p>
-            <p><strong>Address:</strong> Chongqing, China</p>
+            <p>I am actively seeking research and academic opportunities in Electrical Engineering, Power Systems, and Automation.</p>
+            <p><strong>Mobile:</strong> +86 19112163571</p>
+            <p><strong>Email:</strong> <a href="mailto:zhoumingjingcqu@163.com" style="color: var(--accent-purple); font-weight: bold; text-decoration: none;">zhoumingjingcqu@163.com</a></p>
+            <p><strong>Address:</strong> Chongqing City, China</p>
+            <p style="margin-top: 25px;">Please click the button below to view or download my fully updated CV.</p>
+            <a href="resume.pdf" target="_blank" class="btn">View My Curriculum Vitae</a>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 Mingjing Zhou (周明镜). All rights reserved.</p>
+        <p>&copy; 2026 Mingjing Zhou. All rights reserved.</p>
     </footer>
 
 </body>
